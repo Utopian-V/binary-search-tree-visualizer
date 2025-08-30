@@ -1,11 +1,3 @@
-"""
-FastAPI Backend for Binary Search Tree Visualization
-
-This module provides REST API endpoints for BST operations including
-insert, delete, search, and various traversal methods with step-by-step
-operation tracking for frontend animations.
-"""
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -15,7 +7,6 @@ import uvicorn
 from binary_search_tree import BinarySearchTree
 
 
-# Pydantic models for request/response
 class InsertRequest(BaseModel):
     value: int
 
@@ -45,14 +36,12 @@ class TreeStateResponse(BaseModel):
     operation_steps: List[Dict[str, Any]]
 
 
-# Initialize FastAPI app
 app = FastAPI(
     title="Binary Search Tree API",
     description="A comprehensive API for BST operations with visualization support",
     version="1.0.0"
 )
 
-# Add CORS middleware for frontend communication
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
@@ -61,13 +50,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Global BST instance
 bst = BinarySearchTree()
 
 
 @app.get("/")
 async def root():
-    """Root endpoint with API information."""
     return {
         "message": "Binary Search Tree API",
         "version": "1.0.0",
@@ -89,7 +76,6 @@ async def root():
 
 @app.get("/tree", response_model=TreeStateResponse)
 async def get_tree_state():
-    """Get the current state of the BST."""
     return TreeStateResponse(
         tree_state=bst.to_dict(),
         operation_steps=bst.get_operation_steps()
@@ -98,7 +84,6 @@ async def get_tree_state():
 
 @app.post("/tree/insert", response_model=OperationResponse)
 async def insert_value(request: InsertRequest):
-    """Insert a value into the BST."""
     try:
         success = bst.insert(request.value)
         message = f"Value {request.value} inserted successfully" if success else f"Value {request.value} already exists"
@@ -115,7 +100,6 @@ async def insert_value(request: InsertRequest):
 
 @app.post("/tree/delete", response_model=OperationResponse)
 async def delete_value(request: DeleteRequest):
-    """Delete a value from the BST."""
     try:
         success = bst.delete(request.value)
         message = f"Value {request.value} deleted successfully" if success else f"Value {request.value} not found"
@@ -132,7 +116,6 @@ async def delete_value(request: DeleteRequest):
 
 @app.post("/tree/search", response_model=OperationResponse)
 async def search_value(request: SearchRequest):
-    """Search for a value in the BST."""
     try:
         found = bst.search(request.value)
         message = f"Value {request.value} found" if found else f"Value {request.value} not found"
@@ -149,7 +132,6 @@ async def search_value(request: SearchRequest):
 
 @app.get("/tree/traversal/inorder", response_model=TraversalResponse)
 async def inorder_traversal():
-    """Get inorder traversal of the BST."""
     try:
         traversal = bst.inorder_traversal()
         return TraversalResponse(
@@ -162,7 +144,6 @@ async def inorder_traversal():
 
 @app.get("/tree/traversal/preorder", response_model=TraversalResponse)
 async def preorder_traversal():
-    """Get preorder traversal of the BST."""
     try:
         traversal = bst.preorder_traversal()
         return TraversalResponse(
@@ -175,7 +156,6 @@ async def preorder_traversal():
 
 @app.get("/tree/traversal/postorder", response_model=TraversalResponse)
 async def postorder_traversal():
-    """Get postorder traversal of the BST."""
     try:
         traversal = bst.postorder_traversal()
         return TraversalResponse(
@@ -188,7 +168,6 @@ async def postorder_traversal():
 
 @app.get("/tree/traversal/levelorder", response_model=TraversalResponse)
 async def level_order_traversal():
-    """Get level-order traversal of the BST."""
     try:
         traversal = bst.level_order_traversal()
         return TraversalResponse(
@@ -201,7 +180,6 @@ async def level_order_traversal():
 
 @app.post("/tree/clear", response_model=OperationResponse)
 async def clear_tree():
-    """Clear all values from the BST."""
     try:
         bst.clear()
         return OperationResponse(
@@ -216,7 +194,6 @@ async def clear_tree():
 
 @app.get("/tree/height")
 async def get_height():
-    """Get the height of the BST."""
     try:
         height = bst.height()
         return {
@@ -229,7 +206,6 @@ async def get_height():
 
 @app.get("/tree/size")
 async def get_size():
-    """Get the size (number of nodes) of the BST."""
     try:
         size = bst.size
         return {
@@ -242,7 +218,6 @@ async def get_size():
 
 @app.get("/tree/random")
 async def generate_random_tree():
-    """Generate a random BST with values 1-20."""
     import random
     
     try:

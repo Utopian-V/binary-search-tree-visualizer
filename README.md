@@ -1,36 +1,25 @@
 # Binary Search Tree Visualizer
 
-A comprehensive, interactive web application for visualizing Binary Search Tree (BST) operations with real-time animations and step-by-step operation tracking.
+Interactive web application for visualizing Binary Search Tree operations with real-time animations.
 
-## 🌟 Features
+## Features
 
 ### Core BST Operations
-- **Insert**: Add new nodes with visual feedback
-- **Delete**: Remove nodes with proper tree restructuring
-- **Search**: Find values with path highlighting
-- **Clear**: Reset the entire tree
+- Insert, Delete, Search, Clear operations
+- Real-time tree visualization
+- Step-by-step operation tracking
 
 ### Traversal Algorithms
-- **Inorder Traversal** (Left-Root-Right)
-- **Preorder Traversal** (Root-Left-Right)  
-- **Postorder Traversal** (Left-Right-Root)
-- **Level-order Traversal** (Breadth-First Search)
-
-### Interactive Visualization
-- Real-time tree rendering with smooth animations
-- Step-by-step operation visualization
-- Color-coded node states (visited, found, current, etc.)
-- Responsive design for all screen sizes
-- Beautiful, modern UI with smooth transitions
+- Inorder, Preorder, Postorder, Level-order traversals
+- Visual traversal results
 
 ### Technical Features
-- RESTful API with FastAPI backend
-- React frontend with Framer Motion animations
+- FastAPI backend with REST endpoints
+- React frontend with animations
 - Real-time operation tracking
 - JSON serialization for tree state
-- Comprehensive error handling
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 DSA project/
@@ -50,7 +39,7 @@ DSA project/
 └── README.md              # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+ 
@@ -59,23 +48,23 @@ DSA project/
 
 ### Backend Setup
 
-1. **Navigate to backend directory:**
+1. Navigate to backend directory:
    ```bash
    cd backend
    ```
 
-2. **Create virtual environment:**
+2. Create virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. **Install dependencies:**
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Start the backend server:**
+4. Start the backend server:
    ```bash
    python src/main.py
    ```
@@ -84,105 +73,68 @@ DSA project/
 
 ### Frontend Setup
 
-1. **Navigate to frontend directory:**
+1. Navigate to frontend directory:
    ```bash
    cd frontend
    ```
 
-2. **Install dependencies:**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Start the development server:**
+3. Start the development server:
    ```bash
    npm start
    ```
 
    The application will open at `http://localhost:3000`
 
-## 📚 API Documentation
-
-### Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/` | API information and available endpoints |
+| GET | `/` | API information |
 | GET | `/tree` | Get current tree state |
-| POST | `/tree/insert` | Insert a value into the BST |
-| POST | `/tree/delete` | Delete a value from the BST |
-| POST | `/tree/search` | Search for a value in the BST |
+| POST | `/tree/insert` | Insert a value |
+| POST | `/tree/delete` | Delete a value |
+| POST | `/tree/search` | Search for a value |
 | GET | `/tree/traversal/inorder` | Get inorder traversal |
 | GET | `/tree/traversal/preorder` | Get preorder traversal |
 | GET | `/tree/traversal/postorder` | Get postorder traversal |
 | GET | `/tree/traversal/levelorder` | Get level-order traversal |
-| POST | `/tree/clear` | Clear the entire tree |
-| GET | `/tree/random` | Generate a random BST |
+| POST | `/tree/clear` | Clear the tree |
+| GET | `/tree/random` | Generate random BST |
 | GET | `/tree/height` | Get tree height |
 | GET | `/tree/size` | Get tree size |
 
-### Example API Usage
+## How to Use
 
-```bash
-# Insert a value
-curl -X POST "http://localhost:8000/tree/insert" \
-     -H "Content-Type: application/json" \
-     -d '{"value": 10}'
+1. Start both servers (backend and frontend)
+2. Open the application in your browser at `http://localhost:3000`
+3. Insert values using the control panel
+4. Watch the tree grow with real-time visualizations
+5. Try different operations and traversals
+6. Observe the animations showing each step
 
-# Get tree state
-curl "http://localhost:8000/tree"
+## Development
 
-# Get inorder traversal
-curl "http://localhost:8000/tree/traversal/inorder"
-```
+### Backend
+- FastAPI with comprehensive BST implementation
+- Operation step tracking for frontend animations
+- RESTful API with proper error handling
 
-## 🎮 How to Use
-
-1. **Start both servers** (backend and frontend)
-2. **Open the application** in your browser at `http://localhost:3000`
-3. **Insert values** using the control panel on the right
-4. **Watch the tree grow** with real-time visualizations
-5. **Try different operations**:
-   - Insert/Delete nodes
-   - Search for values
-   - Perform traversals
-   - Generate random trees
-6. **Observe the animations** showing each step of the operations
-
-## 🔧 Development
-
-### Backend Development
-
-The backend uses FastAPI with the following key components:
-
-- **`binary_search_tree.py`**: Core BST implementation with operation tracking
-- **`main.py`**: FastAPI application with REST endpoints
-- **Operation Steps**: Each operation returns detailed steps for frontend animation
-
-### Frontend Development
-
-The frontend is built with React and includes:
-
-- **`BSTVisualizer`**: Main tree visualization component
-- **`TreeNode`**: Individual node rendering with animations
-- **`ControlPanel`**: User interface for operations
-- **`TraversalPanel`**: Traversal algorithm controls
-- **`bstService`**: API communication layer
+### Frontend
+- React with styled-components and Framer Motion
+- Interactive tree visualization
+- Real-time operation animations
+- Modern, responsive UI
 
 ### Key Technologies
+- FastAPI, Pydantic, Uvicorn (Backend)
+- React, Styled Components, Framer Motion (Frontend)
 
-**Backend:**
-- FastAPI - Modern Python web framework
-- Pydantic - Data validation
-- Uvicorn - ASGI server
-
-**Frontend:**
-- React 18 - UI library
-- Styled Components - CSS-in-JS styling
-- Framer Motion - Animation library
-- Axios - HTTP client
-
-## 🧪 Testing
+## Testing
 
 ### Backend Tests
 ```bash
@@ -196,44 +148,6 @@ cd frontend
 npm test
 ```
 
-## 📊 Performance
-
-- **Tree Operations**: O(log n) average case for insert/delete/search
-- **Traversals**: O(n) time complexity
-- **Memory**: O(n) space for tree storage
-- **Animation**: 60fps smooth transitions
-
-## 🎨 Customization
-
-### Styling
-- Modify `styled-components` in React components
-- Update color schemes in component files
-- Adjust animation timings in Framer Motion
-
-### Functionality
-- Add new traversal algorithms in `binary_search_tree.py`
-- Extend API endpoints in `main.py`
-- Add new visualizations in React components
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
+## License
 
 This project is open source and available under the MIT License.
-
-## 🙏 Acknowledgments
-
-- FastAPI for the excellent Python web framework
-- React team for the powerful UI library
-- Framer Motion for smooth animations
-- The data structures and algorithms community
-
----
-
-**Happy Coding! 🌳✨**
